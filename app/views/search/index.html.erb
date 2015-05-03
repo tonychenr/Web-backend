@@ -1,0 +1,30 @@
+<h1>Search</h1>
+ 
+<%= form_for search_path, method: :get do |f| %>
+  <p>
+    <%= f.label "Search for" %>
+    <%= text_field_tag :q, params[:q] %>
+    <%= submit_tag "Go", name: nil %>
+  </p>
+<% end %>
+ 
+<ul>
+  <h2>Users</h2>
+    <% @users.each do |user| %>
+      <li>
+        <h3>
+          <%= link_to user.username, user_path(user.id), controller: "user", action: "show", id: user.id%>
+        </h3>
+      </li>
+    <% end %>
+
+
+   <h2>Projects</h2>
+    <% @projects.each do |project| %>
+      <li>
+        <h3>
+          <%= link_to project.name, project_path(project.id), controller: "project", action: "show", id: project.id%>
+        </h3>
+      </li>
+    <% end %>
+</ul>

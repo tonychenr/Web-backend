@@ -26,4 +26,22 @@ class Project < ActiveRecord::Base
 
     users.each { |user| self.users << user }
   end
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :name, analyzer: 'english'
+    end
+  end
+  
 end
+
+# Delete the previous Projects index in Elasticsearch
+Project.__elasticsearch__.client.indices.delete index: Project.index_name rescue nil
+ 
+# Create the new index with the new mapping
+Project.__elasticsearch__.client.indices.create \
+  index: Project.index_name,
+  body: { settings: Project.settings.to_hash, mappings: Project.mappings.to_hash }
+ 
+# Index all Project records from the DB to Elasticsearch
+Project.import

@@ -35,6 +35,14 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
+# #Pagination for elasticsearch
+# gem 'will_paginate', '~> 2.3.16'
+
+gem 'elasticsearch'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
+
 group :production do
   #Allows for Heroku database
   gem 'pg'

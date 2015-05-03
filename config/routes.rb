@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   # '/'
   get '/' => 'user#index'
 
@@ -27,4 +28,7 @@ Rails.application.routes.draw do
   resources :course
   post '/course/:id/enroll' => 'course#enroll', :as => :course_enroll
   post '/course/:id/unenroll' => 'course#unenroll', :as => :course_unenroll
+
+  #'/search/'
+  get '/search' => 'search#index', as: 'search'
 end

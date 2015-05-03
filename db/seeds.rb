@@ -16,6 +16,12 @@ users = [{:username => 'Kyle', :password => '12345678', :password_confirmation =
           {:username => 'Smith', :password => '12345678', :password_confirmation => '12345678', :email => 'smith@berkeley.edu'},
           {:username => 'David', :password => '12345678', :password_confirmation => '12345678', :email => 'david@berkeley.edu'},
      ]
+projects = [{:name => 'Search', :description => 'I can search', :privacy => 'public'},
+                {:name => 'Search1', :description => 'I can search1', :privacy => 'public'}]
+
+projects.each do |project|
+  Project.create!(project)
+end
 
 users.each do |user|
   User.create!(user)
