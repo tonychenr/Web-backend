@@ -19,21 +19,23 @@ class Snapuser < ActiveRecord::Base
   def all_classes
   	classes = self.taught_classes + self.enrolled_classes
   end
-
-  settings index: { number_of_shards: 1 } do
-    mappings dynamic: 'false' do
-      indexes :username, analyzer: 'english'
-    end
-  end
+  
 end
 
-# Delete the previous Snapusers index in Elasticsearch
-Snapuser.__elasticsearch__.client.indices.delete index: Snapuser.index_name rescue nil
+#   settings index: { number_of_shards: 1 } do
+#     mappings dynamic: 'false' do
+#       indexes :username, analyzer: 'english'
+#     end
+#   end
+# end
+
+# # Delete the previous Snapusers index in Elasticsearch
+# Snapuser.__elasticsearch__.client.indices.delete index: Snapuser.index_name rescue nil
  
-# Create the new index with the new mapping
-Snapuser.__elasticsearch__.client.indices.create \
-  index: Snapuser.index_name,
-  body: { settings: Snapuser.settings.to_hash, mappings: Snapuser.mappings.to_hash }
+# # Create the new index with the new mapping
+# Snapuser.__elasticsearch__.client.indices.create \
+#   index: Snapuser.index_name,
+#   body: { settings: Snapuser.settings.to_hash, mappings: Snapuser.mappings.to_hash }
  
 # Index all Snapuser records from the DB to Elasticsearch
 Snapuser.import

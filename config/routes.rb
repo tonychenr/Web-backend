@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :snapusers
   get '/' => 'snapuser#index'
   get '/snapuser/:id/projects' => 'snapuser#projects', as: 'snapuser_projects'
-  get 'search', to: 'search#search'
+  # get 'search', to: 'search#search'
+  get '/search' => 'search#index', as: 'search'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

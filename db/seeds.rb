@@ -16,6 +16,12 @@ snapusers = [{:username => 'Kyle', :password => '12345678', :password_confirmati
           {:username => 'Smith', :password => '12345678', :password_confirmation => '12345678', :email => 'smith@berkeley.edu'},
           {:username => 'David', :password => '12345678', :password_confirmation => '12345678', :email => 'david@berkeley.edu'},
      ]
+snapprojects = [{:name => 'Search', :description => 'I can search', :privacy => 'public'},
+                {:name => 'Search1', :description => 'I can search1', :privacy => 'public'}]
+
+snapprojects.each do |project|
+  Snapproject.create!(project)
+end
 
 snapusers.each do |user|
   Snapuser.create!(user)
