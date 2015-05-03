@@ -1,4 +1,8 @@
 class Project < ActiveRecord::Base
+
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
   has_and_belongs_to_many :users, join_table: 'user_projects'
   has_many :comments
   validates :name, presence: true
